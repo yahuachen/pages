@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>点歌牌</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .song-display {
+            font-size: 20vw;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 5vh;
+            text-shadow: 0 0 20px rgba(255,255,255,0.5);
+            min-height: 30vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+        
+        .change-btn {
+            font-size: 5vw;
+            padding: 2vw 4vw;
+            background-color: #555;
+            color: white;
+            border: none;
+            border-radius: 2vw;
+            cursor: pointer;
+            margin-top: 5vh;
+            opacity: 0.7;
+        }
+        
+        .change-btn:active {
+            transform: scale(0.95);
+            background-color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="song-display" id="songDisplay">命运</div>
+    <button class="change-btn" id="changeBtn">切换歌曲</button>
+
+    <script>
+        const songs = [
+            { name: "命运", color: "#ff0000" },
+            { name: "摩托车日记", color: "#000080" },
+            { name: "后来的我们", color: "#1E90FF" }
+        ];
+        
+        let currentSongIndex = 0;
+        const songDisplay = document.getElementById('songDisplay');
+        const changeBtn = document.getElementById('changeBtn');
+        
+        function changeSong() {
+            currentSongIndex = (currentSongIndex + 1) % songs.length;
+            songDisplay.textContent = songs[currentSongIndex].name;
+            songDisplay.style.color = songs[currentSongIndex].color;
+        }
+        
+        changeBtn.addEventListener('click', changeSong);
+        
+        // 初始设置
+        songDisplay.style.color = songs[0].color;
+    </script>
+</body>
+</html>
